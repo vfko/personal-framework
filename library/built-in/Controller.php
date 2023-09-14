@@ -46,7 +46,7 @@ class Controller {
         }
     }
 
-    protected function addTemplateData(string $variable, string $value): void {
+    protected function addTemplateData(string $variable, mixed $value): void {
         $this->template_data[$variable] = $value;
     }
 
