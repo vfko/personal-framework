@@ -4,7 +4,7 @@
 class Controller {
 
     protected array $page_data = array(); // data usage in <html> and <head>
-    protected array $controller_parameters; // url parameters /app/controller_parameter/controller_parameter
+    protected array $controller_parameters; // url parameters: /app/param1/param2 => [[0] => param1, [1] => param2]
     protected string $template_path = ''; // TODO manualy change template
     protected array $template_data = array(); // data usage in template 
     protected array $data; // http GET and POST data
@@ -42,16 +42,12 @@ class Controller {
 
     private function fillControllerParameters(array $controller_parameters): void {
         foreach ($controller_parameters as $parameter) {
-            $this->controller_parameters[$parameter] = true;
+            $this->controller_parameters[] = $parameter;
         }
     }
 
     protected function addTemplateData(string $variable, mixed $value): void {
         $this->template_data[$variable] = $value;
-    }
-
-    protected function getControllerParam(string $param) {
-        return (isset($this->controller_parameters[$param])) ? $this->controller_parameters[$param] : null;
     }
 
     public function getTemplateData(): array {
