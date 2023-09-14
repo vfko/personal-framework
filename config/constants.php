@@ -12,7 +12,6 @@ define('DB_PORT', null);
 define('DB_CHARSET', 'utf8');
 define('DB_SOCKET', null);
 
-
 /**
  * Home page
  */
@@ -45,5 +44,14 @@ define('FAILED_DELETE_MSG', 'Failed to delete item');
 define('SUCCESSFUL_DELETE_MSG', 'The item has been removed');
 
 /**
+ * Users table settings
+ */
+define('USERNAME', 'username');
+define('PASSWORD', 'password');
+define('ROLE', 'role');
+define('DEFAULT_USER_ROLE', 'guest');
+
+/**
  * DB tables
  */
+define('TABLE_USERS', 'user');

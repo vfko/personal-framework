@@ -3,11 +3,11 @@
 
 class Controller {
 
-    protected array $page_data = array();
-    protected array $controller_parameters;
-    protected string $template_path = '';
-    protected array $template_data = array('test_data'=>'test_data');
-    protected array $data;
+    protected array $page_data = array(); // data usage in <html> and <head>
+    protected array $controller_parameters; // url parameters /app/controller_parameter/controller_parameter
+    protected string $template_path = ''; // TODO manualy change template
+    protected array $template_data = array(); // data usage in template 
+    protected array $data; // http GET and POST data
 
     public function __construct(array $_get_data, array $_post_data, array $controller_parameters) {
         $this->filldataArray($_get_data, $_post_data);

@@ -2,7 +2,7 @@
 
 require_once 'config/loader.php';
 
-// session_start();
+session_start();
 // if (!isset($_SESSION['user_logged_in']) && $_SERVER['REQUEST_URI'] != '/login') {
 // 	header('Location:/login');
 // }
