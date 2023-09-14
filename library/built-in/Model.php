@@ -13,10 +13,17 @@ class Model {
      * @param array $where              where condition ['column_name'=>'value'] -> can add multiple where conditions
      * @return array|bool               return table data or false
      */
-    public function getTableData(string $table_name, string|array $columns='*', array $where, int $num_rows=null, string $order_by_column=null, string $order_by_direction = "ASC", string $where_operator='=', string $where_condition='AND'): array|bool {
-        foreach ($where as $column=>$value) {
-            $this->db->where($column, $value, $where_operator, $where_condition);
+    public function getTableData(string $table_name, string|array $columns='*', array $where=null, int $num_rows=null, string $order_by_column=null, string $order_by_direction = "ASC", string $where_operator='=', string $where_condition='AND'): array|bool {
+        if ($where != null) {
+            foreach ($where as $column=>$value) {
+                $this->db->where($column, $value, $where_operator, $where_condition);
+            }
         }
+
+        if ($order_by_column != null) {
+            $this->db->orderBy($order_by_column, $order_by_direction);
+        }
+        
         return $this->db->get($table_name, $num_rows, $columns);
     }
 
