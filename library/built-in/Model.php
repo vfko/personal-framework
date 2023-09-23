@@ -24,7 +24,7 @@ class Model {
             $this->db->orderBy($order_by_column, $order_by_direction);
         }
         
-        return $this->db->get($table_name, $num_rows, $columns);
+        return $this->makeTableRowIdAsKey($this->db->get($table_name, $num_rows, $columns));
     }
 
     public function insertToTable(string $table, array $data_to_insert, bool $not_null=false) {
@@ -63,6 +63,21 @@ class Model {
             } else {
                 $result[$key] = $data_to_insert[$key];
             }
+        }
+        return $result;
+    }
+
+    /**
+     * @return array    array('row_id' => array(row_data))
+     */
+    private function makeTableRowIdAsKey(array $table_rows): array {
+        $result = array();
+        if (isset($table_rows[0]['id'])) {
+            foreach ($table_rows as $row) {
+                $result[$row['id']] = $row;
+            }
+        } else {
+            return $table_rows;
         }
         return $result;
     }
